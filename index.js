@@ -1,13 +1,13 @@
 // Asignando el texto "PRODUCTOS al primer h1 del body"
-let titulo = document.querySelector("h1");
-titulo.innerText = "PRODUCTOS";
+let titulo = document.querySelector("h1").innerText  = "PRODUCTOS";
 
 // Creando array para las cartas
 const cards = [`<div></div>`];
 
-// Bucle para generar las cards 
-for (let i = 1; i <= 6; i++){
-    const card = `<div class="col-lg-4 col-md-6 mb-4"> 
+//función para crear un bucle que genera cards
+function createCards(){ 
+    for (let i = 1; i <= 6; i++){
+        const card = `<div class="col-lg-4 col-md-6 mb-4"> 
                         <div class="card">
                             <img src="https://66d9ee6caa07a954166f10ed--gregarious-melba-cacdba.netlify.app/${i}.jpg" class="card-img-top" alt="Producto">
                             <div class="card-body">
@@ -20,7 +20,9 @@ for (let i = 1; i <= 6; i++){
                     </div>`;
     // Metiendo las cards en el array 
     cards.push(card);
+    };
 };
 
+createCards();
 document.querySelector("section").innerHTML = cards.join().replaceAll(",", "");
 
