@@ -14,7 +14,7 @@ function createCards(){
                                 <h5 class="card-title">Card title ${i}</h5>
                                 <p class="card-text"></p>
                                 <p class="card-text"></p>
-                                <a href="#" class="btn btn-succes">Ver más</a>
+                                <a href="#" class="btn btn-dark">Ver más</a>
                             </div>
                         </div> 
                     </div>`;
