@@ -1,12 +1,17 @@
+
+class Budin{
+    constructor(ingredientes, mezcla, coccion){
+        this.ingredientes = ingredientes;
+        this.mezcla = mezcla;
+        this.coccion = coccion;
+    }
+}
+
 let tipoBudin = prompt("¿De que tipo de budín te gustaría informarte: NARANJA o MANZANA?")
 
 if (tipoBudin === "NARANJA"){
     
-    const naranja = {
-        ingredientes: "naranja, huevo, manteca, azucar, aceite",
-        mezcla: "5 minutos",
-        coccion: "40 minutos"
-    }
+    const naranja = new Budin("Azucar, leche, manteca, huevos", "5 minutos", "40 minutos");
 
     let metodosBudin = prompt("¿Que quiere saber: INGREDIENTES, MEZCLA o COCCION?")
         if (metodosBudin === "INGREDIENTES"){
@@ -23,11 +28,7 @@ if (tipoBudin === "NARANJA"){
 
 } else if (tipoBudin === "MANZANA"){
 
-    const manzana = {
-        ingredientes: "Manzana, manteca, azucar, aceite",
-        mezcla: "7 minutos",
-        coccion: "35 minutos"
-    }
+    const manzana = new Budin("Manzana, manteca, azucar, aceite", "7 minutos", "35 minutos")
 
     let metodosBudin = prompt("¿Que quiere saber: INGREDIENTES, MEZCLA o COCCION?")
         if (metodosBudin === "INGREDIENTES"){
