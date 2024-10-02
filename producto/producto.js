@@ -1,5 +1,5 @@
-let tituloProducto = document.querySelector("h4");
-let textoProducto = document.querySelector("span");
+let tituloProducto = document.querySelector("h3");
+let textoProducto = document.querySelector("h4");
 let textoPrecio = document.querySelector("p");
 let textoImagen = document.querySelector("img")
 let textoStock = document.querySelector("h5")
@@ -93,13 +93,13 @@ class Producto {
     };
 };
 
+const randomProduct = data.filter((producto) => producto.id == id);
+console.log(randomProduct)
 
-const filtrado = data.filter(id === id);
-
-const randomProduct = new Producto(`asd.jpg`, "Martillo", "Muy buen producto para madera", 35, "$1500", );
-
-tituloProducto.innerHTML = produc.titulo;
-textoProducto.innerHTML = randomProduct.detalle;
-textoPrecio.innerHTML = randomProduct.precio;
-textoImagen.innerHTML = randomProduct.imagen;
-textoStock.innerHTML = randomProduct.stock;
+const producto = new Producto(randomProduct[0].imagen, randomProduct[0].titulo, randomProduct[0].detalle, `STOCK: ${randomProduct[0].stock}`, `PRECIO: $${randomProduct[0].precio}`, `ID: ${randomProduct[0].id}`);
+console.log(producto)
+tituloProducto.innerHTML = producto.titulo;
+textoProducto.innerHTML = producto.detalle;
+textoPrecio.innerHTML = producto.precio;
+textoImagen.innerHTML = producto.imagen;
+textoStock.innerHTML = producto.stock;
