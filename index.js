@@ -3,81 +3,81 @@ let titulo = (document.querySelector("h1").innerText = "PRODUCTOS");
 const data = [
   {
     id: 1,
-    titulo: "Nut - Cashews, Whole, Raw",
-    detalle: "brand proactive niches",
-    imagen: "http://dummyimage.com/193x100.png/dddddd/000000",
-    stock: 81,
-    precio: 708214,
+    titulo: "Martillo",
+    detalle: "Excelente herramienta para martillar",
+    imagen: "https://media.istockphoto.com/id/160057330/es/foto/martillo.jpg?s=1024x1024&w=is&k=20&c=lwmq9Ib-TtnQMOmOL30NVhQ6hKh-KIb8T5-jv7PPBLg=",
+    stock: 11,
+    precio: 2000,
   },
   {
     id: 2,
-    titulo: "Pork - Side Ribs",
-    detalle: "target end-to-end experiences",
-    imagen: "http://dummyimage.com/104x100.png/ff4444/ffffff",
-    stock: 166,
-    precio: 672452,
+    titulo: "Clavos",
+    detalle: "Excelente para ser clavados",
+    imagen: "https://media.istockphoto.com/id/1205558213/es/foto/clavo-de-metal-de-cerca-aislado-sobre-fondo-blanco.jpg?s=1024x1024&w=is&k=20&c=ydSWO9ey6ClkWluueMEooIQIWL8njlLA5jlQyaTsxZU=",
+    stock: 3000,
+    precio: 8,
   },
   {
     id: 3,
-    titulo: "Broom - Push",
-    detalle: "facilitate interactive functionalities",
-    imagen: "http://dummyimage.com/168x100.png/cc0000/ffffff",
-    stock: 970,
-    precio: 903934,
+    titulo: "Pala",
+    detalle: "Pa palear",
+    imagen: "https://media.istockphoto.com/id/174928895/es/foto/old-metal-oxidado-madera-suciedad-y-pala.jpg?s=1024x1024&w=is&k=20&c=z1O8i6R_1RTm0gtCEGRWgcq3Kt_m_zjd_sE10CcE3zg=",
+    stock: 30,
+    precio: 1500,
   },
   {
     id: 4,
-    titulo: "Cheese - St. Andre",
-    detalle: "whiteboard frictionless supply-chains",
-    imagen: "http://dummyimage.com/171x100.png/dddddd/000000",
-    stock: 875,
-    precio: 909209,
+    titulo: "Pico",
+    detalle: "Pa picar",
+    imagen: "https://media.istockphoto.com/id/497543619/es/foto/zapapico-%C3%A9l-utiliz%C3%B3-alicates-de-corte-con-adze-hoja.jpg?s=1024x1024&w=is&k=20&c=K-lF0lhdXKHXwnIlsLHG2POqInxwyO6ryoMhoZjuXpQ=",
+    stock: 16,
+    precio: 4000,
   },
   {
     id: 5,
-    titulo: "Sloe Gin - Mcguinness",
-    detalle: "architect 24/7 e-markets",
-    imagen: "http://dummyimage.com/110x100.png/5fa2dd/ffffff",
-    stock: 743,
-    precio: 833158,
+    titulo: "Carretilla",
+    detalle: "Pa levantar",
+    imagen: "https://media.istockphoto.com/id/181868600/es/foto/carretilla-verde-vac%C3%ADo.jpg?s=1024x1024&w=is&k=20&c=NEVrFcW0wiT9noFGz2LkGbz4Sxm6M3l6NRKaqns7z_g=",
+    stock: 5,
+    precio: 20000,
   },
   {
     id: 6,
-    titulo: "Jerusalem Artichoke",
-    detalle: "reinvent viral partnerships",
-    imagen: "http://dummyimage.com/247x100.png/cc0000/ffffff",
-    stock: 55,
-    precio: 837655,
+    titulo: "Moladora",
+    detalle: "Pa cortar",
+    imagen: "https://media.istockphoto.com/id/926664936/es/foto/amoladora-angular-aislada-sobre-fondo-blanco.jpg?s=1024x1024&w=is&k=20&c=bzCJx1wwz8YBjCz9himea4CQwUKyVE8RkhTw6Ntdvpo=",
+    stock: 32,
+    precio: 50000,
   },
   {
     id: 7,
-    titulo: "Nut - Chestnuts, Whole",
-    detalle: "engage synergistic convergence",
-    imagen: "http://dummyimage.com/137x100.png/dddddd/000000",
+    titulo: "Taladro",
+    detalle: "Pa taladrar",
+    imagen: "https://media.istockphoto.com/id/1300993562/es/foto/destornillador-sobre-fondo-blanco-aislado.jpg?s=1024x1024&w=is&k=20&c=CWRbnHHWzpO2Osw2hM0dpvhdq_m0IFG3DPV90dYdu_8=",
     stock: 645,
-    precio: 416722,
+    precio: 48000,
   },
   {
     id: 8,
-    titulo: "V8 Splash Strawberry Kiwi",
-    detalle: "whiteboard B2C methodologies",
-    imagen: "http://dummyimage.com/210x100.png/dddddd/000000",
-    stock: 165,
-    precio: 550520,
+    titulo: "Montacargas",
+    detalle: "Pa levantar más pesado",
+    imagen: "https://media.istockphoto.com/id/517818547/es/foto/carretilla-elevadora-aislado-sobre-fondo-blanco.jpg?s=1024x1024&w=is&k=20&c=HyXCfnieks1b3_rtz_AOj6oTUBgnCdSoHjUAJ2WltY4=",
+    stock: 2,
+    precio: 3000000,
   },
   {
     id: 9,
-    titulo: "Chicken Giblets",
-    detalle: "envisioneer turn-key networks",
-    imagen: "http://dummyimage.com/229x100.png/dddddd/000000",
-    stock: 351,
-    precio: 935706,
+    titulo: "Tambor",
+    detalle: "Pa tamborear",
+    imagen: "https://media.istockphoto.com/id/1331334163/es/foto/vieja-hormigonera-el%C3%A9ctrica-sucia.jpg?s=1024x1024&w=is&k=20&c=6AC-j-grI5Sir8NyVoe5aF71IbNkH9dABACtAur0Zas=",
+    stock: 4,
+    precio: 80000,
   },
 ];
 
 const cards = data.map((producto) => `<div class="col-lg-4 col-md-6 mb-4"> 
                                         <div class="card">
-                                            <img src="${producto.imagen}" class="card-img-top" alt="Producto">
+                                            <img src="${producto.imagen}" style=" height: 300px;" class="card-img-top" alt="Producto">
                                             <div class="card-body">
                                                 <h5 class="card-title">${producto.titulo}</h5>
                                                 <span class="card-text">${producto.detalle}"</span>
@@ -89,3 +89,23 @@ const cards = data.map((producto) => `<div class="col-lg-4 col-md-6 mb-4">
 );
 
 document.querySelector("section").innerHTML = cards.join().replaceAll(",", "");
+
+/* Buscador */
+
+const entrada = document.querySelector("#entrada");
+const buscar = document.querySelector("#buscar");
+const ul = document.querySelector("#categorias");
+
+const busqueda = data.map(() => `<h5>${h5.nombre}</h5>`);
+form.innerHTML = busqueda.join("");
+
+const filtrarBusqueda = () => {
+  const busqueda = data.filter((item) => item.nombre === entrada.value);
+
+  if (filtrado.lenght === 1){
+    const lista = map((li) => `<li>${li.nombre}</li>`)
+    ul.innerHTML = lista.join("")
+  }
+}
+
+buscar.addEventListener("click", )

@@ -7,7 +7,9 @@ let enlaces = [
 const menu = [];
 
 for (let enlace of enlaces){
-    menu.push(`<a class="nav-item" href="${enlace.link}">${enlace.nombre}</a>`)
+    menu.push(`<a class="nav-link" href="./${enlace.link}">${enlace.nombre}</a>`)
 }
 
-document.querySelector("header").innerHTML = menu.join().replaceAll(",","")
+// esto no funciona por que no hay categorias, acordate de agregar a los objetos y después filtrar
+
+document.getElementById("nav-item").innerHTML = menu.join().replaceAll(",","")
