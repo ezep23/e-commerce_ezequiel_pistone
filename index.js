@@ -8,6 +8,7 @@ const data = [
     imagen: "https://media.istockphoto.com/id/160057330/es/foto/martillo.jpg?s=1024x1024&w=is&k=20&c=lwmq9Ib-TtnQMOmOL30NVhQ6hKh-KIb8T5-jv7PPBLg=",
     stock: 11,
     precio: 2000,
+    categoria: "carpinteria" ,
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ const data = [
     imagen: "https://media.istockphoto.com/id/1205558213/es/foto/clavo-de-metal-de-cerca-aislado-sobre-fondo-blanco.jpg?s=1024x1024&w=is&k=20&c=ydSWO9ey6ClkWluueMEooIQIWL8njlLA5jlQyaTsxZU=",
     stock: 3000,
     precio: 8,
+    categoria: "carpinteria" ,
   },
   {
     id: 3,
@@ -24,6 +26,7 @@ const data = [
     imagen: "https://media.istockphoto.com/id/174928895/es/foto/old-metal-oxidado-madera-suciedad-y-pala.jpg?s=1024x1024&w=is&k=20&c=z1O8i6R_1RTm0gtCEGRWgcq3Kt_m_zjd_sE10CcE3zg=",
     stock: 30,
     precio: 1500,
+    categoria: "construccion" ,
   },
   {
     id: 4,
@@ -32,6 +35,7 @@ const data = [
     imagen: "https://media.istockphoto.com/id/497543619/es/foto/zapapico-%C3%A9l-utiliz%C3%B3-alicates-de-corte-con-adze-hoja.jpg?s=1024x1024&w=is&k=20&c=K-lF0lhdXKHXwnIlsLHG2POqInxwyO6ryoMhoZjuXpQ=",
     stock: 16,
     precio: 4000,
+    categoria: "construccion" ,
   },
   {
     id: 5,
@@ -40,6 +44,7 @@ const data = [
     imagen: "https://media.istockphoto.com/id/181868600/es/foto/carretilla-verde-vac%C3%ADo.jpg?s=1024x1024&w=is&k=20&c=NEVrFcW0wiT9noFGz2LkGbz4Sxm6M3l6NRKaqns7z_g=",
     stock: 5,
     precio: 20000,
+    categoria: "construccion" 
   },
   {
     id: 6,
@@ -48,6 +53,7 @@ const data = [
     imagen: "https://media.istockphoto.com/id/926664936/es/foto/amoladora-angular-aislada-sobre-fondo-blanco.jpg?s=1024x1024&w=is&k=20&c=bzCJx1wwz8YBjCz9himea4CQwUKyVE8RkhTw6Ntdvpo=",
     stock: 32,
     precio: 50000,
+    categoria: "construccion" 
   },
   {
     id: 7,
@@ -56,6 +62,7 @@ const data = [
     imagen: "https://media.istockphoto.com/id/1300993562/es/foto/destornillador-sobre-fondo-blanco-aislado.jpg?s=1024x1024&w=is&k=20&c=CWRbnHHWzpO2Osw2hM0dpvhdq_m0IFG3DPV90dYdu_8=",
     stock: 645,
     precio: 48000,
+    categoria: "carpinteria" 
   },
   {
     id: 8,
@@ -64,6 +71,7 @@ const data = [
     imagen: "https://media.istockphoto.com/id/517818547/es/foto/carretilla-elevadora-aislado-sobre-fondo-blanco.jpg?s=1024x1024&w=is&k=20&c=HyXCfnieks1b3_rtz_AOj6oTUBgnCdSoHjUAJ2WltY4=",
     stock: 2,
     precio: 3000000,
+    categoria: "plomeria" 
   },
   {
     id: 9,
@@ -72,6 +80,7 @@ const data = [
     imagen: "https://media.istockphoto.com/id/1331334163/es/foto/vieja-hormigonera-el%C3%A9ctrica-sucia.jpg?s=1024x1024&w=is&k=20&c=6AC-j-grI5Sir8NyVoe5aF71IbNkH9dABACtAur0Zas=",
     stock: 4,
     precio: 80000,
+    categoria: "construccion" ,
   },
 ];
 
@@ -96,16 +105,30 @@ const entrada = document.querySelector("#entrada");
 const buscar = document.querySelector("#buscar");
 const ul = document.querySelector("#categorias");
 
-const busqueda = data.map(() => `<h5>${h5.nombre}</h5>`);
-form.innerHTML = busqueda.join("");
-
 const filtrarBusqueda = () => {
-  const busqueda = data.filter((item) => item.nombre === entrada.value);
-
-  if (filtrado.lenght === 1){
-    const lista = map((li) => `<li>${li.nombre}</li>`)
-    ul.innerHTML = lista.join("")
+  const filtrado = data.filter((item) => item.titulo.toLowerCase() === entrada.value.toLowerCase());
+  
+  if (filtrado.length === 1){
+    const busqueda = filtrado.map((producto) => `<li>${producto.titulo}</li>`)
+    ul.innerHTML = busqueda.join("")
+  } else{
+    ul.innerHTML = "Busqueda no encontrada"
   }
 }
 
-buscar.addEventListener("click", )
+buscar.addEventListener("click", filtrarBusqueda);
+
+/* Filtrar categoria */
+
+function filtrarCategoria(categoria){
+  if (categoria === construccion){
+    const construccion = data.filter(producto => producto.categoria === "construccion")
+    cards(construccion)
+  } else if (categoria === carpinteria){
+    const carpinteria = data.filter(producto => producto.categoria === "carpinteria")
+    cards(carpinteria)
+  } else{
+    const plomeria = data.filter(producto => producto.categoria === "plomeria")
+    cards(plomeria)
+  }
+}
