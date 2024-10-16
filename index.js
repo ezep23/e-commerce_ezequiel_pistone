@@ -1,4 +1,5 @@
-let titulo = (document.querySelector("h1").innerText = "PRODUCTOS");
+let titulo = document.querySelector("h1")
+titulo.innerText = "PRODUCTOS";
 const seccionProductos = document.querySelector("section")
 
 const data = [
@@ -103,15 +104,19 @@ seccionProductos.innerHTML = cards.join().replaceAll(",", "");
 
 /* Buscador */
 
-/* TODO MAL  - CATEGORIAS NO EXISTE MÁS -> FILTRAR Y METER EN MAIN, CORTA */
 const entrada = document.querySelector("#entrada");
 const buscar = document.querySelector("#buscar");
 
 const filtrarBusqueda = () => {
-
   const filtrado = data.filter((item) => item.titulo.toLowerCase() === entrada.value.toLowerCase());
-  
+    
+  function añadirProductos(){
+    seccionProductos.innerHTML = cards.join().replaceAll(",", "");
+    titulo.innerHTML = "PRODUCTOS"
+  }
+
   if (filtrado.length === 1){
+
     const busqueda = filtrado.map((producto) => `<div class="col-lg-4 col-md-6 mb-4"> 
                                         <div class="card">
                                             <img src="${producto.imagen}" style=" height: 300px;" class="card-img-top" alt="Producto">
@@ -123,7 +128,13 @@ const filtrarBusqueda = () => {
                                             </div>
                                         </div> 
                                     </div>`)
+                              
     seccionProductos.innerHTML = busqueda.join("")
+    titulo.innerHTML = "<button id='botonEliminar' class='float-end p-2'>X</button>";
+
+    const eliminar = document.querySelector("#botonEliminar");
+    eliminar.addEventListener('click', añadirProductos)
+
   } else if(filtrado.length === 0){
     seccionProductos.innerHTML = cards.join().replaceAll(",", "");
   } else {
