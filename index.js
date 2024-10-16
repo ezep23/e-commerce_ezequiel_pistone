@@ -1,4 +1,5 @@
 let titulo = (document.querySelector("h1").innerText = "PRODUCTOS");
+const seccionProductos = document.querySelector("section")
 
 const data = [
   {
@@ -89,7 +90,7 @@ const cards = data.map((producto) => `<div class="col-lg-4 col-md-6 mb-4">
                                             <img src="${producto.imagen}" style=" height: 300px;" class="card-img-top" alt="Producto">
                                             <div class="card-body">
                                                 <h5 class="card-title">${producto.titulo}</h5>
-                                                <span class="card-text">${producto.detalle}"</span>
+                                                <span class="card-text">${producto.detalle}</span>
                                                 <p class="card-text">Disponibles: ${producto.stock}</p>
                                                 <a href="./producto/producto.html?=${producto.id}" class="btn btn-dark">$${producto.precio}</a>
                                             </div>
@@ -97,22 +98,36 @@ const cards = data.map((producto) => `<div class="col-lg-4 col-md-6 mb-4">
                                     </div>`
 );
 
-document.querySelector("section").innerHTML = cards.join().replaceAll(",", "");
+
+seccionProductos.innerHTML = cards.join().replaceAll(",", "");
 
 /* Buscador */
 
+/* TODO MAL  - CATEGORIAS NO EXISTE MÁS -> FILTRAR Y METER EN MAIN, CORTA */
 const entrada = document.querySelector("#entrada");
 const buscar = document.querySelector("#buscar");
-const ul = document.querySelector("#categorias");
 
 const filtrarBusqueda = () => {
+
   const filtrado = data.filter((item) => item.titulo.toLowerCase() === entrada.value.toLowerCase());
   
   if (filtrado.length === 1){
-    const busqueda = filtrado.map((producto) => `<li>${producto.titulo}</li>`)
-    ul.innerHTML = busqueda.join("")
-  } else{
-    ul.innerHTML = "Busqueda no encontrada"
+    const busqueda = filtrado.map((producto) => `<div class="col-lg-4 col-md-6 mb-4"> 
+                                        <div class="card">
+                                            <img src="${producto.imagen}" style=" height: 300px;" class="card-img-top" alt="Producto">
+                                            <div class="card-body">
+                                                <h5 class="card-title">${producto.titulo}</h5>
+                                                <span class="card-text">${producto.detalle}</span>
+                                                <p class="card-text">Disponibles: ${producto.stock}</p>
+                                                <a href="./producto/producto.html?=${producto.id}" class="btn btn-dark">$${producto.precio}</a>
+                                            </div>
+                                        </div> 
+                                    </div>`)
+    seccionProductos.innerHTML = busqueda.join("")
+  } else if(filtrado.length === 0){
+    seccionProductos.innerHTML = cards.join().replaceAll(",", "");
+  } else {
+    seccionProductos.innerHTML = 'Le erraste ñeri'
   }
 }
 
@@ -120,15 +135,58 @@ buscar.addEventListener("click", filtrarBusqueda);
 
 /* Filtrar categoria */
 
+const enlace = document.querySelectorAll("nav-link")
+
 function filtrarCategoria(categoria){
-  if (categoria === construccion){
+  if (categoria === "Construccion"){
     const construccion = data.filter(producto => producto.categoria === "construccion")
-    cards(construccion)
-  } else if (categoria === carpinteria){
+    let mapeando = construccion.map((producto) => 
+                                    `<div class="col-lg-4 col-md-6 mb-4"> 
+                                        <div class="card">
+                                            <img src="${producto.imagen}" style=" height: 300px;" class="card-img-top" alt="Producto">
+                                            <div class="card-body">
+                                                <h5 class="card-title">${producto.titulo}</h5>
+                                                <span class="card-text">${producto.detalle}</span>
+                                                <p class="card-text">Disponibles: ${producto.stock}</p>
+                                                <a href="./producto/producto.html?=${producto.id}" class="btn btn-dark">$${producto.precio}</a>
+                                            </div>
+                                        </div> 
+                                    </div>`
+    )
+    seccionProductos.innerHTML = mapeando.join().replaceAll(",", "");
+  } else if (categoria === "Carpinteria"){
     const carpinteria = data.filter(producto => producto.categoria === "carpinteria")
-    cards(carpinteria)
+    let mapeando = carpinteria.map((producto) => 
+                                    `<div class="col-lg-4 col-md-6 mb-4"> 
+                                        <div class="card">
+                                            <img src="${producto.imagen}" style=" height: 300px;" class="card-img-top" alt="Producto">
+                                            <div class="card-body">
+                                                <h5 class="card-title">${producto.titulo}</h5>
+                                                <span class="card-text">${producto.detalle}</span>
+                                                <p class="card-text">Disponibles: ${producto.stock}</p>
+                                                <a href="./producto/producto.html?=${producto.id}" class="btn btn-dark">$${producto.precio}</a>
+                                            </div>
+                                        </div> 
+                                    </div>`
+    )
+    seccionProductos.innerHTML = mapeando.join().replaceAll(",", "");
   } else{
     const plomeria = data.filter(producto => producto.categoria === "plomeria")
-    cards(plomeria)
+    let mapeando = plomeria.map((producto) => 
+                                    `<div class="col-lg-4 col-md-6 mb-4"> 
+                                        <div class="card">
+                                            <img src="${producto.imagen}" style=" height: 300px;" class="card-img-top" alt="Producto">
+                                            <div class="card-body">
+                                                <h5 class="card-title">${producto.titulo}</h5>
+                                                <span class="card-text">${producto.detalle}</span>
+                                                <p class="card-text">Disponibles: ${producto.stock}</p>
+                                                <a href="./producto/producto.html?=${producto.id}" class="btn btn-dark">$${producto.precio}</a>
+                                            </div>
+                                        </div> 
+                                    </div>`
+    )
+    seccionProductos.innerHTML = mapeando.join().replaceAll(",", "");
   }
 }
+
+
