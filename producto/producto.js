@@ -2,6 +2,7 @@ let tituloProducto = document.querySelector("h3");
 let textoProducto = document.querySelector("h4");
 let textoPrecio = document.querySelector("p");
 let imagen = document.querySelector("img")
+let atributoImagen = imagen.getAttribute('src');
 let textoStock = document.querySelector("h5")
 let id = window.location.search.split("=").at(-1);
 
@@ -94,13 +95,11 @@ class Producto {
 };
 
 const randomProduct = data.filter((producto) => producto.id == id);
-const producto = new Producto (randomProduct[0].titulo, randomProduct[0].detalle, `STOCK: ${randomProduct[0].stock}`, `PRECIO: $${randomProduct[0].precio}`, `ID: ${randomProduct[0].id}`);
+const producto = new Producto (randomProduct[0].imagen, randomProduct[0].titulo, randomProduct[0].detalle, `STOCK: ${randomProduct[0].stock}`, `PRECIO: $${randomProduct[0].precio}`, `ID: ${randomProduct[0].id}`);
 
 tituloProducto.innerText = producto.titulo;
 textoProducto.innerText = producto.detalle;
 textoPrecio.innerText = producto.precio;
-imagen.innerText = producto.imagen;
+atributoImagen = producto.imagen;
 textoStock.innerText = producto.stock;
 textoId.innerText = producto.id;
-
-console.log(imagen);
