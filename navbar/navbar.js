@@ -10,5 +10,5 @@ for (let enlace of enlaces){
     menu.push(`<a class="nav-link" href="./${enlace.link}">${enlace.nombre}</a>`)
 }
 
-document.getElementsByClassName("nav-item").innerHTML = menu.join().replaceAll(",","")
+document.getElementById("#nav-item").innerHTML = menu.join().replaceAll(",","")
 

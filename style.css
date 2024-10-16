@@ -3,3 +3,17 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+header{
+    background-color: #d6d6d6;
+}
+
+main{
+    .container{
+        .card{
+            .card-body{
+                background-color: #d6d6d6;
+            }
+        }
+    }
+}
