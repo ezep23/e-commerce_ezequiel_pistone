@@ -8,9 +8,8 @@ Creando un sitio web para una ferretería utilizando javascript para agregarle d
     -Javascript
 
 ## Capturas
-Proximamente 
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](./img/screen1.png)
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](./img/screen2.png)
 
