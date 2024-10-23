@@ -6,6 +6,16 @@
 
 header{
     background-color: #d6d6d6;
+
+    .navbar{
+        .navbar-nav{
+            #nav-item{
+                .nav-link{
+                    cursor:pointer;
+                }
+            }
+        }
+    }
 }
 
 main{

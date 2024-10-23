@@ -107,7 +107,8 @@ seccionProductos.innerHTML = cards.join().replaceAll(",", "");
 const entrada = document.querySelector("#entrada");
 const buscar = document.querySelector("#buscar");
 
-const filtrarBusqueda = () => {
+const filtrarBusqueda = (e) => {
+  e.preventDefault()
   const filtrado = data.filter((item) => item.titulo.toLowerCase() === entrada.value.toLowerCase());
     
   function añadirProductos(){
@@ -145,9 +146,6 @@ const filtrarBusqueda = () => {
 buscar.addEventListener("click", filtrarBusqueda);
 
 /* Filtrar categoria */
-
-const enlace = document.querySelectorAll("nav-link")
-
 function filtrarCategoria(categoria){
   if (categoria === "Construccion"){
     const construccion = data.filter(producto => producto.categoria === "construccion")
