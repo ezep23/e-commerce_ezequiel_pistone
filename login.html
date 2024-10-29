@@ -11,7 +11,7 @@
     const autenticado = () => {
         if (localStorage.getItem("email")){
             location.href = "./index.html"
-        }
+        } 
     } 
     autenticado();
 </script>
@@ -30,7 +30,7 @@
     }
 </style>
 
-<body>
+<body id="login">
     <main>
         <form>
             <div class="mb-3">
@@ -65,7 +65,7 @@
                 location.href = "./index.html"
             } else {
                 
-                alert("Erorr maquina")
+                alert("Error maquina!")
             }
         })
     </script>

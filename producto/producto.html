@@ -11,6 +11,14 @@
     <link rel="stylesheet" href="../style.css">
     <title>Producto</title>
 </head>
+<script>
+  const autenticado = () => {
+      if (localStorage.getItem("email") === null){
+          location.href = "../login.html"
+      } 
+  } 
+  autenticado();
+</script>
 <body>
 <!-- Navbar -->
 <header>

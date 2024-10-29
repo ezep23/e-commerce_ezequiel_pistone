@@ -11,6 +11,14 @@
     <link rel="stylesheet" href="style.css">
     <title>Ferretería</title>
 </head>
+<script>
+  const autenticado = () => {
+      if (localStorage.getItem("email") === null){
+          location.href = "./login.html"
+      } 
+  } 
+  autenticado();
+</script>
 <body>
     <!-- Navbar -->
     <header>
@@ -32,6 +40,9 @@
               <input id="entrada" class="form-control me-2" type="search" placeholder="Producto" aria-label="Search">
               <button id="buscar" class="btn btn-outline-dark" type="submit">Buscar</button>
             </form>
+            <div id="log-in">
+            
+            </div>
           </div>
         </div>
       </nav>
