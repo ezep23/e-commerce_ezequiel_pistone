@@ -11,6 +11,37 @@
     <link rel="stylesheet" href="../style.css">
     <title>Producto</title>
 </head>
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  header{
+    background-color: #d6d6d6;
+
+    .navbar{
+        .navbar-nav{
+            #nav-item{
+                .nav-link{
+                    cursor:pointer;
+                }
+            }
+        }
+    }
+  }
+
+  main{
+    .container{
+        .card{
+            .card-body{
+              background-color: #d6d6d6;
+            }
+        }
+    }
+  }
+</style>
 <script>
   const autenticado = () => {
       if (localStorage.getItem("email") === null){
@@ -25,34 +56,17 @@
     <nav class="navbar navbar-expand-lg p-4">
       <div class="container-fluid">
         <a class="navbar-brand" href="../index.html">Ferreteria</a>
-        <div>
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item d-flex">
-            <a id="nav-item"></a>
-            <script src="../navbar/navbar.js"></script>
-            </li>
-          </ul>
+        <div id="dinamic-navbar">
+          <script src="../navbar/navbar.js"></script>
         </div>
       </div>
     </nav>
   </header>
   <main>
     <!-- Productos -->
-    <section class="container d-flex justify-content-center row pt-5 mx-auto">
-      <div class="col-lg-4 col-md-6 mb-4"> 
-        <div class="card">
-            <div class="card-body"> 
-                <img src="./" style=" height: 300px;" class="card-img-top" alt="Producto">
-                <h3 class="card-title">PRODUCTO</h3>
-                <hr>
-                <h4>Texto producto</h4>
-                <h5>Stock</h5>
-                <p>texto precio</p>
-                <a href="#" class="btn btn-dark">COMPRAR</a>
-            </div>
-        </div> 
-      </div>
+    <section>
+      
     </section>
   </main>
-  <script src="producto.js"></script>
+  <script src="./producto.js"></script>
 </body>

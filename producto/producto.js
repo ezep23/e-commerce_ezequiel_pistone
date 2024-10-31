@@ -1,12 +1,4 @@
-let tituloProducto = document.querySelector("h3");
-let textoProducto = document.querySelector("h4");
-let textoPrecio = document.querySelector("p");
-let imagen = document.querySelector("img")
-let atributoImagen = imagen.getAttribute('src');
-let textoStock = document.querySelector("h5")
-let id = window.location.search.split("=").at(-1);
-
-
+/* Productos */
 const data = [
   {
     id: 1,
@@ -82,24 +74,29 @@ const data = [
   },
 ];
 
+function mapearProducto(){
+  
+  const id = window.location.search.split("=").at(-1);
+  const randomProduct = data.filter((producto) => producto.id == id);
 
-class Producto {
-    constructor(imagen, titulo, detalle, stock, precio, id){
-        this.imagen = imagen;
-        this.titulo = titulo;
-        this.detalle = detalle;
-        this.stock = stock;
-        this.precio = precio;
-        this.id = id;
-    };
-};
+  const seccionProductos = document.querySelector("section")
+  const producto = randomProduct.map((producto) => `<div class="container pt-4 col-lg-4 col-md-6 mb-4"> 
+                                        <div class="card">
+                                            <img src="${producto.imagen}" style=" height: 300px;" class="card-img-top" alt="Producto">
+                                            <div class="card-body">
+                                                <h5 class="card-title">${producto.titulo}</h5>
+                                                <span class="card-text">${producto.detalle}</span>
+                                                <p class="card-text">Disponibles: ${producto.stock}</p>
+                                                <a href="./producto/producto.html?=${producto.id}" class="btn btn-dark">$${producto.precio}</a>
+                                            </div>
+                                        </div> 
+                                    </div>`
+    )
+    return seccionProductos.innerHTML = producto.join().replaceAll(",", "");
+}
+mapearProducto();
 
-const randomProduct = data.filter((producto) => producto.id == id);
-const producto = new Producto (randomProduct[0].imagen, randomProduct[0].titulo, randomProduct[0].detalle, `STOCK: ${randomProduct[0].stock}`, `PRECIO: $${randomProduct[0].precio}`, `ID: ${randomProduct[0].id}`);
 
-tituloProducto.innerText = producto.titulo;
-textoProducto.innerText = producto.detalle;
-textoPrecio.innerText = producto.precio;
-atributoImagen = producto.imagen;
-textoStock.innerText = producto.stock;
-textoId.innerText = producto.id;
+
+
+

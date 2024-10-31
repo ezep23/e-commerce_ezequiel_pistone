@@ -1,7 +1,8 @@
+/* Titulo de la página */
 let titulo = document.querySelector("h1")
 titulo.innerText = "PRODUCTOS";
-const seccionProductos = document.querySelector("section")
 
+/* Información de los productos */
 const data = [
   {
     id: 1,
@@ -86,7 +87,10 @@ const data = [
   },
 ];
 
-const cards = data.map((producto) => `<div class="col-lg-4 col-md-6 mb-4"> 
+/* Insertar los productos */
+function mapearArrays(categoria){
+  const seccionProductos = document.querySelector("section")
+  const arrayTerminado = categoria.map((producto) => `<div class="col-lg-4 col-md-6 mb-4"> 
                                         <div class="card">
                                             <img src="${producto.imagen}" style=" height: 300px;" class="card-img-top" alt="Producto">
                                             <div class="card-body">
@@ -97,105 +101,52 @@ const cards = data.map((producto) => `<div class="col-lg-4 col-md-6 mb-4">
                                             </div>
                                         </div> 
                                     </div>`
-);
+    )
+    return seccionProductos.innerHTML = arrayTerminado.join().replaceAll(",", "");
+}
+mapearArrays(data);
 
-
-seccionProductos.innerHTML = cards.join().replaceAll(",", "");
-
-/* Buscador */
-
-const entrada = document.querySelector("#entrada");
-const buscar = document.querySelector("#buscar");
-
+/* Buscar producto determinado */
+const buscar = document.querySelector("#buscar")
 const filtrarBusqueda = (e) => {
   e.preventDefault()
+  const entrada = document.querySelector("#entrada");
   const filtrado = data.filter((item) => item.titulo.toLowerCase() === entrada.value.toLowerCase());
     
-  function añadirProductos(){
-    seccionProductos.innerHTML = cards.join().replaceAll(",", "");
+  function mostrarProductos(){
+    mapearArrays(data);
     titulo.innerHTML = "PRODUCTOS"
   }
 
   if (filtrado.length === 1){
 
-    const busqueda = filtrado.map((producto) => `<div class="col-lg-4 col-md-6 mb-4"> 
-                                        <div class="card">
-                                            <img src="${producto.imagen}" style=" height: 300px;" class="card-img-top" alt="Producto">
-                                            <div class="card-body">
-                                                <h5 class="card-title">${producto.titulo}</h5>
-                                                <span class="card-text">${producto.detalle}</span>
-                                                <p class="card-text">Disponibles: ${producto.stock}</p>
-                                                <a href="./producto/producto.html?=${producto.id}" class="btn btn-dark">$${producto.precio}</a>
-                                            </div>
-                                        </div> 
-                                    </div>`)
-                              
-    seccionProductos.innerHTML = busqueda.join("")
+    mapearArrays(filtrado);
     titulo.innerHTML = "<button id='botonEliminar' class='float-end p-2'>X</button>";
 
     const eliminar = document.querySelector("#botonEliminar");
-    eliminar.addEventListener('click', añadirProductos)
+    eliminar.addEventListener('click', mostrarProductos)
 
-  } else if(filtrado.length === 0){
-    seccionProductos.innerHTML = cards.join().replaceAll(",", "");
-  } else {
-    seccionProductos.innerHTML = 'Le erraste ñeri'
+  } else{
+    mapearArrays(data);
   }
 }
-
-buscar.addEventListener("click", filtrarBusqueda);
+buscar.addEventListener("click", filtrarBusqueda)
 
 /* Filtrar categoria */
-function filtrarCategoria(categoria){
+function filtrarCategorias(categoria){
   if (categoria === "Construccion"){
     const construccion = data.filter(producto => producto.categoria === "construccion")
-    let mapeando = construccion.map((producto) => 
-                                    `<div class="col-lg-4 col-md-6 mb-4"> 
-                                        <div class="card">
-                                            <img src="${producto.imagen}" style=" height: 300px;" class="card-img-top" alt="Producto">
-                                            <div class="card-body">
-                                                <h5 class="card-title">${producto.titulo}</h5>
-                                                <span class="card-text">${producto.detalle}</span>
-                                                <p class="card-text">Disponibles: ${producto.stock}</p>
-                                                <a href="./producto/producto.html?=${producto.id}" class="btn btn-dark">$${producto.precio}</a>
-                                            </div>
-                                        </div> 
-                                    </div>`
-    )
-    seccionProductos.innerHTML = mapeando.join().replaceAll(",", "");
+    mapearArrays(construccion)
   } else if (categoria === "Carpinteria"){
     const carpinteria = data.filter(producto => producto.categoria === "carpinteria")
-    let mapeando = carpinteria.map((producto) => 
-                                    `<div class="col-lg-4 col-md-6 mb-4"> 
-                                        <div class="card">
-                                            <img src="${producto.imagen}" style=" height: 300px;" class="card-img-top" alt="Producto">
-                                            <div class="card-body">
-                                                <h5 class="card-title">${producto.titulo}</h5>
-                                                <span class="card-text">${producto.detalle}</span>
-                                                <p class="card-text">Disponibles: ${producto.stock}</p>
-                                                <a href="./producto/producto.html?=${producto.id}" class="btn btn-dark">$${producto.precio}</a>
-                                            </div>
-                                        </div> 
-                                    </div>`
-    )
-    seccionProductos.innerHTML = mapeando.join().replaceAll(",", "");
+    mapearArrays(carpinteria);
   } else{
     const plomeria = data.filter(producto => producto.categoria === "plomeria")
-    let mapeando = plomeria.map((producto) => 
-                                    `<div class="col-lg-4 col-md-6 mb-4"> 
-                                        <div class="card">
-                                            <img src="${producto.imagen}" style=" height: 300px;" class="card-img-top" alt="Producto">
-                                            <div class="card-body">
-                                                <h5 class="card-title">${producto.titulo}</h5>
-                                                <span class="card-text">${producto.detalle}</span>
-                                                <p class="card-text">Disponibles: ${producto.stock}</p>
-                                                <a href="./producto/producto.html?=${producto.id}" class="btn btn-dark">$${producto.precio}</a>
-                                            </div>
-                                        </div> 
-                                    </div>`
-    )
-    seccionProductos.innerHTML = mapeando.join().replaceAll(",", "");
+    mapearArrays(plomeria);
   }
 }
+
+
+
 
 
