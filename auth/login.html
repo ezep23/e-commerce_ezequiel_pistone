@@ -32,7 +32,7 @@
 
 <body id="login">
     <main>
-        <form>
+        <form class="background p-3 border-10px">
             <div class="mb-3">
                 <label class="form-label">Correo electrónico</label>
                 <input type="email" name="email" class="form-control" />
@@ -51,23 +51,5 @@
                 </span>
             </div>
     </main>
-    <script>
-        const credentials = {
-            email: "elnene2323@gmail.com",
-            password: "1234" 
-        }
-
-        let form = document.querySelector("form");
-        form.addEventListener("submit", (e) => {
-            e.preventDefault();
-            if (credentials.email === form.elements.email.value && credentials.password === form.elements.contraseña.value){
-                localStorage.setItem("email", form.elements.email.value);
-                location.href = "./index.html"
-            } else {
-                
-                alert("Error maquina!")
-            }
-        })
-    </script>
 </body>
 </html>

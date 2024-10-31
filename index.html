@@ -11,6 +11,38 @@
     <link rel="stylesheet" href="style.css">
     <title>Ferretería</title>
 </head>
+<style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+  header{
+    background-color: #d6d6d6;
+
+    .navbar{
+        .navbar-nav{
+            #nav-item{
+                .nav-link{
+                    cursor:pointer;
+                }
+            }
+        }
+    }
+  }
+
+  main{
+    .container{
+        .card{
+            .card-body{
+                background-color: #d6d6d6;
+            }
+        }
+    }
+  }
+
+</style>
 <script>
   const autenticado = () => {
       if (localStorage.getItem("email") === null){
@@ -31,17 +63,17 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li id="nav-item" class="nav-item d-flex">
-                <a class="nav-link" onclick="filtrarCategoria('Construccion')">Construccion</a>
-                <a class="nav-link" onclick="filtrarCategoria('Plomeria')">Plomeria</a>
-                <a class="nav-link" onclick="filtrarCategoria('Carpinteria')">Carpinteria</a>
+                <a class="nav-link" onclick="filtrarCategorias('Construccion')">Construccion</a>
+                <a class="nav-link" onclick="filtrarCategorias('Plomeria')">Plomeria</a>
+                <a class="nav-link" onclick="filtrarCategorias('Carpinteria')">Carpinteria</a>
               </li>
             </ul>
-            <form id="seccionButton" class="d-flex" role="search">
-              <input id="entrada" class="form-control me-2" type="search" placeholder="Producto" aria-label="Search">
+            <form id="seccionButton" class="d-flex gap-2 mx-4" role="search">
+              <input id="entrada" class="form-control" type="search" placeholder="Producto" aria-label="Search">
               <button id="buscar" class="btn btn-outline-dark" type="submit">Buscar</button>
             </form>
-            <div id="log-in">
-            
+            <div id="dinamic-navbar">
+              <script src="./navbar/navbar.js"></script>
             </div>
           </div>
         </div>
