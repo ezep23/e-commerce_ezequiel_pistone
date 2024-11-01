@@ -1,12 +1,13 @@
 
 const login = document.querySelector("#dinamic-navbar")
+const name = localStorage.getItem("email").split("@")[0]
 login.innerHTML = `<ul class="navbar-nav session">${ 
     localStorage.getItem("email") 
-        ? `<li> ${localStorage.getItem("email")}</li><span> | </span><li>Cerrar sesión</li>`   
-        : `<li><a class="nav-link" href="./login.html">Iniciar sesión</a></li>`
+        ? `<li> ¡Hola, ${name}!</li><span> | </span><li>CART ${localStorage.getItem("quantity")} </li><span> | </span><li onclick="logout()">Cerrar sesión</li>`   
+        : `<li href="./auth/login.html">Iniciar sesión</li>`
 } </ul>`
 
 function logout() {
     localStorage.clear()
-    location.href = "index.html"
+    location.href = "../index.html"
 }

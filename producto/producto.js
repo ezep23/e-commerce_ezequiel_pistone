@@ -74,29 +74,79 @@ const data = [
   },
 ];
 
+/* Insertar producto */
 function mapearProducto(){
-  
+
   const id = window.location.search.split("=").at(-1);
   const randomProduct = data.filter((producto) => producto.id == id);
 
   const seccionProductos = document.querySelector("section")
   const producto = randomProduct.map((producto) => `<div class="container pt-4 col-lg-4 col-md-6 mb-4"> 
-                                        <div class="card">
-                                            <img src="${producto.imagen}" style=" height: 300px;" class="card-img-top" alt="Producto">
-                                            <div class="card-body">
-                                                <h5 class="card-title">${producto.titulo}</h5>
-                                                <span class="card-text">${producto.detalle}</span>
-                                                <p class="card-text">Disponibles: ${producto.stock}</p>
-                                                <a href="./producto/producto.html?=${producto.id}" class="btn btn-dark">$${producto.precio}</a>
-                                            </div>
-                                        </div> 
-                                    </div>`
+                                                      <div class="card d-flex flex-row">
+                                                        <img src="${producto.imagen}" class="card-img-top" alt="Producto">
+                                                        <div class="card-body p-5">
+                                                          <h5 class="card-title ">${producto.titulo}</h5>
+                                                          <span class="card-text">${producto.detalle}</span>
+                                                          <p class="card-text">Disponibles: ${producto.stock}</p>
+                                                          <div class=" p-5">
+                                                            ${localStorage.getItem("email")
+                                                              ? ` <div class="p-4 input-group">
+                                                                    <button class="d-flex btn btn-danger" type="button" onclick="incrementarOrden()" >+</button>   
+                                                                    <input type="number" class="form-control" value="1">
+                                                                    <button class="btn btn-danger" type="button" onclick="decrementarOrden" >-</button>
+                                                                  </div><a href="#" class="btn btn-primary col-12" onclick="añadirCarrito()">Comprar</a>`
+                                                              : `<a href="../auth/login.html" class="btn btn-dark">Iniciar sesión para comprar</a>`
+                                                              }                                      
+                                                            </div>
+                                                        </div>
+                                                      </div> 
+                                                  </div>`
     )
     return seccionProductos.innerHTML = producto.join().replaceAll(",", "");
 }
 mapearProducto();
 
+/* Lógica del producto */
 
+const counter = document.querySelector("#producto .input-group input");
 
+function incrementarOrden(){
+  if (Number(counter.value) > 1){
+    counter.value = Number(counter.value) - 1
+  }
+}
 
+function decrementarOrden(){
+  const id = Number(window.search.split("=")[1])
+
+  const product = data.find(card => card.id == id)
+
+  if (product.stock > counter.value){
+    counter.value = Number(counter.value) + 1
+  }
+}
+
+function añadirCarrito(){
+  const cart = JSON.parse(localStorage.getItem("cart"))
+
+  const idProduct = Number(window.search.split("=")[1])
+
+  const product = data.find(item => item.id === id.product)
+
+  const existeIdenCart = cart.some(item => item.product.id === idProduct)
+
+  if (existeIdenCart){
+    cart = cart.map(item => {
+      if (item.product.id === idProduct){
+        return {...item, quantity: item.quantity + Number(counter.value)}
+      } else{
+        return item
+      }
+    }
+  )
+  } else {
+    cart.push({ product: product, quantity: Number(counter.value) })
+  }
+
+}
 
