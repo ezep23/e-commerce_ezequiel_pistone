@@ -7,15 +7,6 @@
     <title>Log-in</title>
 </head>
 
-<script>
-    const autenticado = () => {
-        if (localStorage.getItem("email")){
-            location.href = "./index.html"
-        } 
-    } 
-    autenticado();
-</script>
-
 <style>
     body {
      display: grid;
@@ -46,10 +37,11 @@
 
             <div class="container p-4">
                 <span>
-                    email: elnene2323@gmail.com <br>
+                    email: Usuario@gmail.com <br>
                     password: 1234
                 </span>
             </div>
     </main>
+    <script src="./auth.js"></script>
 </body>
 </html>
