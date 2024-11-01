@@ -112,7 +112,7 @@ const counter = document.querySelector("#producto .input-group input");
 
 function incrementarOrden(){
   if (Number(counter.value) > 1){
-    counter.value = Number(counter.value) - 1
+    counter.value = Number(counter.value) + 1
   }
 }
 
@@ -122,15 +122,14 @@ function decrementarOrden(){
   const product = data.find(card => card.id == id)
 
   if (product.stock > counter.value){
-    counter.value = Number(counter.value) + 1
+    counter.value = Number(counter.value) - 1
   }
 }
 
 function añadirCarrito(){
   const cart = JSON.parse(localStorage.getItem("cart"))
 
-  const idProduct = Number(window.search.split("=")[1])
-
+  const idProduct = Number(window.location.search.split("=")[1])
   const product = data.find(item => item.id === id.product)
 
   const existeIdenCart = cart.some(item => item.product.id === idProduct)
