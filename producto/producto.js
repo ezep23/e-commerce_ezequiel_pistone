@@ -91,9 +91,11 @@ function mapearProducto(){
                                                           <div class=" p-5">
                                                             ${localStorage.getItem("email")
                                                               ? ` <div class="p-4 input-group">
-                                                                    <button class="d-flex btn btn-danger" type="button" onclick="incrementarOrden()" >+</button>   
-                                                                    <input type="number" class="form-control" value="1">
-                                                                    <button class="btn btn-danger" type="button" onclick="decrementarOrden" >-</button>
+                                                                    <div class="d-flex flex-row">
+                                                                      <button class="btn btn-danger" type="button" onclick="decrementarOrden()" >-</button>   
+                                                                      <input type="number" class="form-control" value="1">
+                                                                      <button class="btn btn-danger" type="button" onclick="incrementarOrden" >+</button>
+                                                                    </div>
                                                                   </div><a href="#" class="btn btn-primary col-12" onclick="añadirCarrito()">Comprar</a>`
                                                               : `<a href="../auth/login.html" class="btn btn-dark">Iniciar sesión para comprar</a>`
                                                               }                                      
@@ -131,7 +133,6 @@ function añadirCarrito(){
 
   const idProduct = Number(window.location.search.split("=")[1])
   const product = data.find(item => item.id === id.product)
-
   const existeIdenCart = cart.some(item => item.product.id === idProduct)
 
   if (existeIdenCart){
@@ -141,11 +142,16 @@ function añadirCarrito(){
       } else{
         return item
       }
-    }
-  )
+    })
   } else {
     cart.push({ product: product, quantity: Number(counter.value) })
   }
 
+  localStorage.setItem("cart", JSON.stringify(cart))
+  let quantity = cart.reduce((acumulado, actual) => acumulado + actual.quantity, 0)
+  localStorage.setItem("quantity", quantity)
+  const quantityTag = document.querySelector("#quantity")
+  quantityTag.innerText = quantity
+  counter.value = "1"
 }
 

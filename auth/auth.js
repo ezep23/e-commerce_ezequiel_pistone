@@ -3,12 +3,11 @@ const credentials = {
     password: "1234" 
 }
 
-const autenticado = () => {
+function autenticado() {
     if (localStorage.getItem("email")){
-        // location.href = "../index.html" -> ROMPE TODO
+        // location.href = "../index.html"
     } 
-} 
-autenticado();
+} autenticado();
 
 let form = document.querySelector("form");
 form.addEventListener("submit", (e) => {
