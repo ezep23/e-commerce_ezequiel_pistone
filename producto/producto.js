@@ -88,15 +88,15 @@ function mapearProducto(){
                                                           <h5 class="card-title ">${producto.titulo}</h5>
                                                           <span class="card-text">${producto.detalle}</span>
                                                           <p class="card-text">Disponibles: ${producto.stock}</p>
-                                                          <div class=" p-5">
+                                                          <div>
                                                             ${localStorage.getItem("email")
-                                                              ? ` <div class="p-4 input-group">
-                                                                    <div class="d-flex flex-row">
-                                                                      <button class="btn btn-danger" type="button" onclick="decrementarOrden()" >-</button>   
-                                                                      <input type="number" class="form-control" value="1">
-                                                                      <button class="btn btn-danger" type="button" onclick="incrementarOrden" >+</button>
+                                                              ? ` <div p-2">
+                                                                    <div id="input-group" class="d-flex">
+                                                                      <button class="btn btn-dark" type="button" onclick="decrementarOrden()" >-</button>   
+                                                                      <input type="number" class="form-control" value="1" style="width: 100px; text-align: center;">
+                                                                      <button class="btn btn-dark" type="button" onclick="incrementarOrden()" >+</button>
                                                                     </div>
-                                                                  </div><a href="#" class="btn btn-primary col-12" onclick="añadirCarrito()">Comprar</a>`
+                                                                  </div><a href="#" class="btn btn-dark col-12 mt-2" onclick="comprar()">Comprar</a>`
                                                               : `<a href="../auth/login.html" class="btn btn-dark">Iniciar sesión para comprar</a>`
                                                               }                                      
                                                             </div>
@@ -110,29 +110,43 @@ mapearProducto();
 
 /* Lógica del producto */
 
-const counter = document.querySelector("#producto .input-group input");
+const counter = document.querySelector("#input-group input");
+const idProduct = Number(window.location.search.split("=")[1])
+const product = data.find(item => item.id === idProduct)
 
 function incrementarOrden(){
-  if (Number(counter.value) > 1){
-    counter.value = Number(counter.value) + 1
-  }
+  if (Number(counter.value) < product.stock) {
+    counter.value = Number(counter.value) + 1;
+}
 }
 
 function decrementarOrden(){
-  const id = Number(window.search.split("=")[1])
-
-  const product = data.find(card => card.id == id)
-
-  if (product.stock > counter.value){
-    counter.value = Number(counter.value) - 1
+  if (Number(counter.value) > 1){
+    counter.value = Number(counter.value) - 1;
   }
 }
 
+function comprar(){
+  Swal.fire({
+    text: "¿Estás seguro/a de querer añadir esto al carrito?",
+    confirmButtonText: "Sí",
+    cancelButtonText: "No",
+    showCancelButton: true,
+    showCloseButton: true,
+    confirmButtonColor: "green",
+    cancelButtonColor: "red"
+  }).then(result => {
+    if (result.isConfirmed) {
+      añadirCarrito()
+    }
+  })
+}
+
 function añadirCarrito(){
-  const cart = JSON.parse(localStorage.getItem("cart"))
+  let cart = JSON.parse(localStorage.getItem("cart") || []);
 
   const idProduct = Number(window.location.search.split("=")[1])
-  const product = data.find(item => item.id === id.product)
+  const product = data.find(item => item.id === idProduct)
   const existeIdenCart = cart.some(item => item.product.id === idProduct)
 
   if (existeIdenCart){
@@ -147,11 +161,23 @@ function añadirCarrito(){
     cart.push({ product: product, quantity: Number(counter.value) })
   }
 
+  counter.value = "1"
   localStorage.setItem("cart", JSON.stringify(cart))
+  
   let quantity = cart.reduce((acumulado, actual) => acumulado + actual.quantity, 0)
-  localStorage.setItem("quantity", quantity)
+  localStorage.setItem("quantity", JSON.stringify(quantity))
+
   const quantityTag = document.querySelector("#quantity")
   quantityTag.innerText = quantity
-  counter.value = "1"
+
+  Toastify({
+    text: "Agregaste producto/s al carrito",
+    style: {
+      background: "#000",
+    },
+    offset: {
+      y: 95 
+    },
+  }).showToast();
 }
 
