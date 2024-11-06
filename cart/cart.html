@@ -42,13 +42,12 @@
 
               <div class="row my-4">
                   <div class="col-sm-6">
-                      <a href="index.html" class="btn btn-primary">Seguir comprando</a>
+                      <a href="../index.html" class="btn btn-dark">Seguir comprando</a>
                   </div>
                   <div class="col-sm-6">
-                      <div class="text-sm-end mt-2 mt-sm-0">
-                          <button id="btn-checkout" class="btn btn-success me-2">Checkout</button>
-                          <button id="btn-clear-cart" class="btn btn-danger" onclick="cleanCart()">Limpiar
-                              Carrito</button>
+                      <div class="d-flex flex-row-reverse gap-4">
+                          <button class="btn btn-success p-2" onclick="finishOrder()">Finalizar compra</button>
+                          <button id="btn-clear-cart p-2" class="btn btn-danger" onclick="cleanCart()">Limpiar carrito</button>
                       </div>
                   </div>
               </div>
@@ -59,8 +58,8 @@
               <!-- Resumen del pedido -->
               <div class="mt-5 mt-lg-0">
                   <div class="card border shadow-none">
-                      <div class="card-header bg-transparent border-bottom py-3 px-4">
-                          <h5 class="font-size-16 mb-0">Orden de Compra</h5>
+                      <div class="card-header bg-dark border-bottom py-3 px-4">
+                          <h5 class="font-size-16 mb-0 text-white">Orden de Compra</h5>
                       </div>
                       <div class="card-body p-4 pt-2">
                           <div class="table-responsive">
@@ -82,6 +81,7 @@
       </div>
   </div>
   </main>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="./cart.js"></script>
   <script src="./js/nav.js"></script>
   <script src="../navbar/navbar.js"></script>

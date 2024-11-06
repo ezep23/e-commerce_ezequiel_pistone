@@ -57,7 +57,7 @@ function getCart(cards) {
 function total(cards) {
     let cartTotal = document.querySelector("#card-total");
     let total = cards.length > 0
-        ? cards.reduce((acumulado, actual) => Number(acumulado) + Number(actual.product.precio) * Number(actual.stock), 0) //suma
+        ? cards.reduce((acumulado, actual) => acumulado + actual.product.precio * actual.stock, 0)
         : 0;
 
     cartTotal.innerText = "$" + Number(total);
@@ -75,6 +75,23 @@ function removeItem(id) {
 
     const quantityTag = document.querySelector("#quantity");
     quantityTag.innerText = quantity;
+}
+
+function finishOrder(){
+    Swal.fire({
+        text: "¿Estás seguro/a de querer añadir esto al carrito?",
+        confirmButtonText: "Sí",
+        cancelButtonText: "No",
+        showCancelButton: true,
+        showCloseButton: true,
+        confirmButtonColor: "green",
+        cancelButtonColor: "red"
+      }).then(result => {
+        if (result.isConfirmed) {
+          cleanCart()
+          location.href = "../index.html"
+        }
+      })
 }
 
 function cleanCart() {
