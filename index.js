@@ -104,7 +104,11 @@ function mapearArrays(categoria){
     )
     return seccionProductos.innerHTML = arrayTerminado.join().replaceAll(",", "");
 }
-mapearArrays(data);
+
+const spinner = new Promise((resolve, rejected) => {
+  setTimeout(() => {resolve(mapearArrays(data))}, 3000)
+})
+
 
 /* Buscar producto determinado */
 const buscar = document.querySelector("#buscar")
