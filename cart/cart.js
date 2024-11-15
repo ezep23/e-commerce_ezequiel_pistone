@@ -57,10 +57,10 @@ function getCart(cards) {
 function total(cards) {
     let cartTotal = document.querySelector("#card-total");
     let total = cards.length > 0
-        ? cards.reduce((acumulado, actual) => acumulado + actual.product.precio * actual.stock, 0)
+        ? cards.reduce((acumulado, actual) => acumulado + actual.product.precio * actual.quantity, 0)
         : 0;
 
-    cartTotal.innerText = "$" + Number(total);
+    cartTotal.innerText = `$ ${total}`;
 }
 
 function removeItem(id) {
@@ -78,20 +78,55 @@ function removeItem(id) {
 }
 
 function finishOrder(){
-    Swal.fire({
-        text: "¿Estás seguro/a de querer añadir esto al carrito?",
-        confirmButtonText: "Sí",
-        cancelButtonText: "No",
-        showCancelButton: true,
-        showCloseButton: true,
-        confirmButtonColor: "green",
-        cancelButtonColor: "red"
-      }).then(result => {
-        if (result.isConfirmed) {
-          cleanCart()
-          location.href = "../index.html"
-        }
-      })
+    if(localStorage.getItem("quantity") == 0){
+
+        Toastify({
+            text: "Error! Al parecer no tiene productos en el carrito...",
+            style: {
+              background: "red",
+            },
+            offset: {
+              y: 70 
+            },
+        }).showToast();
+
+    } else {
+        Swal.fire({
+            text: "¿Estás seguro/a de querer añadir esto al carrito?",
+            confirmButtonText: "Sí",
+            cancelButtonText: "No",
+            showCancelButton: true,
+            showCloseButton: true,
+            confirmButtonColor: "green",
+            cancelButtonColor: "red"
+          }).then(result => {
+            if (result.isConfirmed){
+              const datos = {
+                user: `PEPE`,
+              }
+    
+              fetch("https://6736a17baafa2ef222310933.mockapi.io/orders", {
+                method: "POST",
+                body: JSON.stringify(datos),
+              })
+    
+              fetch("https://6736a17baafa2ef222310933.mockapi.io/orders", {
+                method: "GET",
+              }).then(respuesta => respuesta.json()).then(datas =>
+                
+                Toastify({
+                text: `Gracias por su compra ${datas.at(-1).user}, su orden es la numero ${datas.at(-1).id}`,
+                style: {
+                  background: "#000",
+                },
+                offset: {
+                  y: 250 
+                },
+              }).showToast())
+              cleanCart()
+            }
+        })
+    }
 }
 
 function cleanCart() {
