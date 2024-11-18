@@ -11,11 +11,11 @@ const btnClearCart = document.querySelector("#btn-clear-cart");
 function getCart(cards) {
     const list = cards.map(
         card => `
-            <div class="card border shadow-none">
+            <div class="card border-shadow-none">
                 <div class="card-body">
-                    <div class="d-flex align-items-start border-bottom pb-3">
+                    <div class="d-flex align-items-start border-bottom">
                         <div class="me-4">
-                            <img src="${card.product.imagen}" alt="${card.product.titulo}"
+                            <img  src="${card.product.imagen}" alt="${card.product.titulo}"
                                 class="avatar-lg rounded" />
                         </div>
                         <div class="flex-grow-1 overflow-hidden">
@@ -51,19 +51,19 @@ function getCart(cards) {
             </div>`
     ).join("");
     cardsSection.innerHTML = list;
-    btnClearCart.style.display = cards.length > 0 ? "block" : "none";
 }
 
 function total(cards) {
-    let cartTotal = document.querySelector("#card-total");
+    let cartTotal = document.getElementById("card-total")
     let total = cards.length > 0
         ? cards.reduce((acumulado, actual) => acumulado + actual.product.precio * actual.quantity, 0)
         : 0;
 
-    cartTotal.innerText = `$ ${total}`;
+    cartTotal.innerText = "$" + total;
 }
 
 function removeItem(id) {
+    
     let cards = JSON.parse(localStorage.getItem("cart")) || [];
     let newCards = cards.filter(card => card.product.id !== id); 
     localStorage.setItem("cart", JSON.stringify(newCards));
@@ -102,7 +102,8 @@ function finishOrder(){
           }).then(result => {
             if (result.isConfirmed){
               const datos = {
-                user: `PEPE`,
+
+                user: localStorage.getItem("email"),
               }
     
               fetch("https://6736a17baafa2ef222310933.mockapi.io/orders", {
