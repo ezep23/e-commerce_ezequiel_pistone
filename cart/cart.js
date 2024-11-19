@@ -101,30 +101,40 @@ function finishOrder(){
             cancelButtonColor: "red"
           }).then(result => {
             if (result.isConfirmed){
-              const datos = {
+              
+            const datos = {
+                user: localStorage.getItem("email").split("@")[0],
+                items: JSON.parse(localStorage.getItem("cart"))
+            }
+    
+            fetch(
+                "https://6736a17baafa2ef222310933.mockapi.io/orders", 
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(datos),
+                } 
+            )
+                .then(respuesta => respuesta.json())
+                .then(datas =>
+                    Toastify({
+                        text: `Gracias por su compra ${datas.user}, su orden es la numero ${datas.id}`,
+                        style: {
+                            background: "#000",
+                        },
+                        offset: {
+                            y: 250,
+                        },
+                    }).showToast())
+                    cleanCart()
 
-                user: localStorage.getItem("email"),
-              }
-    
-              fetch("https://6736a17baafa2ef222310933.mockapi.io/orders", {
-                method: "POST",
-                body: JSON.stringify(datos),
-              })
-    
-              fetch("https://6736a17baafa2ef222310933.mockapi.io/orders", {
-                method: "GET",
-              }).then(respuesta => respuesta.json()).then(datas =>
-                
-                Toastify({
-                text: `Gracias por su compra ${datas.at(-1).user}, su orden es la numero ${datas.at(-1).id}`,
-                style: {
-                  background: "#000",
-                },
-                offset: {
-                  y: 250 
-                },
-              }).showToast())
-              cleanCart()
+                .catch(() => {
+                    Swal.fire({
+                        text: "Hermano, hubo un error terrrrrible, intentá nuevamente",
+                        confirmButtonColor: "#000",
+                        confirmButtonText: "Ok"
+                    })
+                })
             }
         })
     }
