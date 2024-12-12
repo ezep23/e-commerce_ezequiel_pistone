@@ -90,7 +90,10 @@ const data = [
 /* Insertar los productos */
 function mapearArrays(categoria){
   const seccionProductos = document.querySelector("section")
-  const arrayTerminado = categoria.map((producto) => `<div class="col-lg-4 col-md-6 mb-4"> 
+  if (categoria.length === 0) {
+    seccionProductos.innerHTML = "No se ha encontrado ningún producto"
+  } else {
+    const arrayTerminado = categoria.map((producto) => `<div class="col-lg-4 col-md-6 mb-4"> 
                                         <div class="card">
                                             <img src="${producto.imagen}" style=" height: 300px;" class="card-img-top" alt="Producto">
                                             <div class="card-body">
@@ -101,40 +104,26 @@ function mapearArrays(categoria){
                                             </div>
                                         </div> 
                                     </div>`
-    )
+    ) 
     return seccionProductos.innerHTML = arrayTerminado.join().replaceAll(",", "");
+  }
 }
 
 const spinner = new Promise((resolve, rejected) => {
   setTimeout(() => {resolve(mapearArrays(data))}, 3000)
 })
 
+let seccionProductos = document.querySelector("section")
+let inputProducto = document.querySelector("#entrada");
 
-/* Buscar producto determinado */
-const buscar = document.querySelector("#buscar")
-const filtrarBusqueda = (e) => {
-  e.preventDefault()
-  const entrada = document.querySelector("#entrada");
-  const filtrado = data.filter((item) => item.titulo.toLowerCase() === entrada.value.toLowerCase());
-    
-  function mostrarProductos(){
-    mapearArrays(data);
-    titulo.innerHTML = "PRODUCTOS"
-  }
+const manejarBusqueda = () => {
+  const entrada = document.querySelector("#entrada").value.toLowerCase();
+  const productosFiltrados = data.filter((item) => item.titulo.toLowerCase().startsWith(entrada));
 
-  if (filtrado.length === 1){
-
-    mapearArrays(filtrado);
-    titulo.innerHTML = "<button id='botonEliminar' class='float-end p-2'>X</button>";
-
-    const eliminar = document.querySelector("#botonEliminar");
-    eliminar.addEventListener('click', mostrarProductos)
-
-  } else{
-    mapearArrays(data);
-  }
+  mapearArrays(productosFiltrados);
 }
-buscar.addEventListener("click", filtrarBusqueda)
+
+inputProducto.addEventListener("input", manejarBusqueda);
 
 /* Filtrar categoria */
 function filtrarCategorias(categoria){
